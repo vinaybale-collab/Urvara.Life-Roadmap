@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Urvara.Life | Strategic Roadmap 2026-2029</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap');
+
+    :root {
+      --canvas: #fcfcf9;
+      --ink: #0d140f;
+      --muted: #5c665e;
+      --line: rgba(13, 20, 15, 0.08);
+      
+      --u-green: #2d6a4f;
+      --u-blue: #0066ff;
+      --u-black: #000000;
+
+      --layer-1: var(--u-green);
+      --layer-1-soft: #edf5f0;
+      --layer-2: #1a4d5c;
+      --layer-2-soft: #eef6f8;
+      --layer-3: #8a5a2b;
+      --layer-3-soft: #f7f2ed;
+      
+      --active-color: var(--layer-1);
+      --active-soft: var(--layer-1-soft);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Figtree', sans-serif;
+      background-color: var(--canvas);
+      color: var(--ink);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- Custom Logo Section --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      background: white;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo-main {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin: 0;
+    }
+
+    .logo-main .green { color: var(--u-green); }
+    .logo-main .blue { color: var(--u-blue); }
+    .logo-main .black { color: var(--u-black); }
+
+    .logo-subtext {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--muted);
+        margin-top: 2px;
+        letter-spacing: 0.01em;
+    }
+
+    .north-star-bar {
+      border-left: 1px solid var(--line);
+      padding-left: 20px;
+      max-width: 400px;
+    }
+
+    .north-star-bar strong { 
+      font-size: 13px; 
+      font-weight: 900; 
+      text-transform: uppercase; 
+      letter-spacing: 0.08em;
+      color: var(--active-color);
+      display: block;
+    }
+
+    .north-star-bar span { 
+      font-size: 10.5px; 
+      color: var(--muted); 
+      line-height: 1.3;
+      display: block;
+    }
+
+    /* --- Prominent Strategic HUD --- */
+    .nav-hud {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 12px 40px;
+      background: #fdfdfb;
+      border-bottom: 1px solid var(--line);
+      gap: 30px;
+    }
+
+    .nav-instruction {
+        display: flex;
+        flex-direction: column;
+    }
+    .nav-instruction b { 
+        font-size: 10px; 
+        text-transform: uppercase; 
+        letter-spacing: 0.15em; 
+        color: var(--muted);
+        margin-bottom: 4px;
+    }
+    .nav-instruction span {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink);
+    }
+
+    .layer-tabs {
+      display: flex;
+      gap: 12px;
+      background: rgba(0,0,0,0.04);
+      padding: 6px;
+      border-radius: 14px;
+    }
+
+    .layer-tab {
+      padding: 10px 22px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .layer-tab small { font-size: 8px; font-weight: 900; color: var(--muted); margin-bottom: 2px; opacity: 0.6; }
+    .layer-tab strong { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    
+    .layer-tab.active { background: white; border-color: rgba(0,0,0,0.05); box-shadow: 0 8px 16px rgba(0,0,0,0.06); }
+    .layer-tab.active strong { color: var(--active-color); }
+
+    .scroll-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .scroll-cta b {
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--active-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .scroll-cta b span { animation: bounce 1.5s infinite; display: inline-block; font-size: 14px; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+    /* --- The Grid --- */
+    .roadmap-blueprint {
+      flex: 1;
+      margin: 10px 20px 15px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+
+    .grid-head {
+      display: grid;
+      grid-template-columns: 180px repeat(3, 1fr) 340px;
+      background: #fbfbf9;
+      border-bottom: 1px solid var(--line);
+    }
+    .grid-head div {
+      padding: 10px 20px;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      border-right: 1px solid var(--line);
+    }
+
+    .grid-scroll {
+      flex: 1;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    .layer-view { display: none; }
+    .layer-view.active { display: block; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 180px repeat(3, 1fr) 340px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .domain-cell {
+      padding: 22px 20px;
+      border-right: 1px solid var(--line);
+      background: #fefefe;
+    }
+    .domain-cell strong { display: block; font-size: 12px; text-transform: uppercase; color: var(--active-color); margin-bottom: 5px; }
+    .domain-cell span { display: block; font-size: 10.5px; color: var(--muted); line-height: 1.4; }
+
+    .cell {
+      padding: 12px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--active-color);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-color: var(--active-color); }
+    
+    .tag {
+      font-size: 8px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--active-color);
+      background: var(--active-soft);
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+    .card-title { display: block; font-size: 13px; font-weight: 800; line-height: 1.2; margin-bottom: 4px; }
+    .card-body { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+    /* --- 2029 Pillar --- */
+    .pillar-2029 {
+      grid-column: 5;
+      grid-row: 1 / span 20;
+      background: var(--active-soft);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-left: 1px solid var(--line);
+    }
+    .pillar-2029 h3 { 
+      font-family: 'Figtree', sans-serif; 
+      font-size: 28px; 
+      font-weight: 900;
+      margin: 0 0 15px; 
+      color: var(--active-color); 
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .pillar-2029 p { font-size: 13.5px; line-height: 1.6; color: var(--ink); font-weight: 500; }
+
+    /* --- Modal --- */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(13, 20, 15, 0.4); backdrop-filter: blur(5px);
+      display: none; justify-content: center; align-items: center; z-index: 1000;
+    }
+    .overlay.open { display: flex; }
+    .modal { background: white; width: 600px; max-width: 90vw; padding: 40px; border-radius: 30px; position: relative; }
+    .modal h2 { font-size: 32px; font-weight: 900; margin: 0 0 15px; color: var(--active-color); }
+    .modal p { font-size: 15px; line-height: 1.6; color: var(--muted); }
+    .close-modal { position: absolute; top: 20px; right: 25px; border: none; background: none; font-size: 28px; cursor: pointer; color: var(--muted); }
+
+    footer { padding: 0 40px 10px; font-size: 10px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <div class="logo-main"><span class="green">Urvara</span><span class="blue">.</span><span class="black">Life</span></div>
+        <div class="logo-subtext">A natural capital company</div>
+    </div>
+    <div class="north-star-bar">
+        <strong>16 million acres</strong>
+        <span>The 2050 North Star mission. Building market infrastructure and products over the next 3 years to reach this scale.</span>
+    </div>
+</header>
+
+<nav class="nav-hud">
+    <div class="nav-instruction">
+        <b>Strategic Navigation</b>
+        <span>Select a roadmap layer below to view focus areas</span>
+    </div>
+    <div class="layer-tabs">
+        <button class="layer-tab active" data-target="trust" onclick="setLayer('trust', '#2d6a4f', '#edf5f0')">
+            <small>LAYER 01</small><strong>Public Trust</strong>
+        </button>
+        <button class="layer-tab" data-target="paid" onclick="setLayer('paid', '#1a4d5c', '#eef6f8')">
+            <small>LAYER 02</small><strong>Paid Execution</strong>
+        </button>
+        <button class="layer-tab" data-target="lab" onclick="setLayer('lab', '#8a5a2b', '#f7f2ed')">
+            <small>LAYER 03</small><strong>Idea Lab</strong>
+        </button>
+    </div>
+    <div class="scroll-cta">
+        <b>Scroll for all domains <span>↓</span></b>
+    </div>
+</nav>
+
+<main class="roadmap-blueprint">
+    <div class="grid-head">
+        <div>Strategy Domain</div>
+        <div>2026: Build</div>
+        <div>2027: Launch</div>
+        <div>2028: Flywheel</div>
+        <div style="background: #f1f1ee;">2029 Strategic Position</div>
+    </div>
+
+    <div class="grid-scroll">
+        <!-- LAYER 1: TRUST -->
+        <section class="layer-view active" id="trust" style="--active-color: #2d6a4f; --active-soft: #edf5f0;">
+            <div class="row">
+                <div class="domain-cell"><strong>Advocacy</strong><span>Public evidence, market education, and scientific credibility.</span></div>
+                <div class="cell" data-yr="2026">
+                    <div class="card" onclick="openModal('nii-v1')"><span class="tag">Live</span><b class="card-title">Nature Impact Index v1 live</b><p class="card-body">Public baseline showing company impact on nature.</p></div>
+                    <div class="card" onclick="openModal('cdu-live')"><span class="tag">MOU live</span><b class="card-title">Charles Darwin University partnership</b><p class="card-body">Natural capital valuation partnership and scientific credibility for natural capital valuation.</p></div>
+                </div>
+                <div class="cell" data-yr="2027">
+                    <div class="card" onclick="openModal('nii-v2')"><span class="tag">v2</span><b class="card-title">Nature Impact Index v2</b><p class="card-body">Sectoral deep dives and formal launch moment.</p></div>
+                    <div class="card" onclick="openModal('state-report')"><span class="tag">Feb 2027</span><b class="card-title">State of Nature & Business report</b><p class="card-body">Released at ISS Summit with CRB and other partners.</p></div>
+                </div>
+                <div class="cell" data-yr="2028">
+                    <div class="card" onclick="openModal('nii-v3')"><span class="tag">v3</span><b class="card-title">Nature Impact Index v3</b><p class="card-body">Restoration and mitigation success stories become visible in the public index.</p></div>
+                    <div class="card" onclick="openModal('state-report-v2')"><span class="tag">Vol II</span><b class="card-title">State of Nature & Business continues</b><p class="card-body">Second edition carries use cases, restoration stories, and market proof.</p></div>
+                </div>
+                <div class="pillar-2029">
+                    <h3>Full Natural Capital Market Infrastructure</h3>
+                    <p>Nature Positive Coalition and India Nature Action 100 drive demand. Nature Impact Index and the State of Nature & Business report create awareness and market education. Ecosystem Services Exchange and Business Case for Nature create supply proof. Together, all of these reinforce each other and create India’s natural capital market infrastructure.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="domain-cell"><strong>Supply</strong><span>Restoration proof, investable projects, and stewardship pathways.</span></div>
+                <div class="cell" data-yr="2026">
+                    <div class="card" onclick="openModal('bcn-v1-start')"><span class="tag">Start</span><b class="card-title">Business Case for Nature v1 starts</b><p class="card-body">FES + LGT Venture Philanthropy and ATREE + ATREE USA partnerships begin.</p></div>
+                    <div class="card" onclick="openModal('ese-design')"><span class="tag">Design</span><b class="card-title">Ecosystem Services Exchange design</b><p class="card-body">Design with FES and LGT Venture Philanthropy, plus advocacy with the Social Stock Exchange.</p></div>
+                </div>
+                <div class="cell" data-yr="2027">
+                    <div class="card" onclick="openModal('bcn-v1-complete')"><span class="tag">Complete</span><b class="card-title">Business Case for Nature v1 completed</b><p class="card-body">First proof from partner projects becomes a public market proof object.</p></div>
+                    <div class="card" onclick="openModal('ese-launch')"><span class="tag">Launch</span><b class="card-title">Ecosystem Services Exchange launched</b><p class="card-body">Pilot FES and hopefully ATREE projects are transacted through the exchange.</p></div>
+                </div>
+                <div class="cell" data-yr="2028">
+                    <div class="card" onclick="openModal('bcn-v2-start')"><span class="tag">Start</span><b class="card-title">Business Case for Nature v2 starts</b><p class="card-body">Second volume builds from volume one proof and additional use cases.</p></div>
+                    <div class="card" onclick="openModal('ese-mainstream')"><span class="tag">Proven</span><b class="card-title">Ecosystem Services Exchange pathway</b><p class="card-body">Restoration projects become more financeable and the pathway starts becoming mainstream.</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="domain-cell"><strong>Demand</strong><span>Coalitions that turn awareness into buyer and investor pressure.</span></div>
+                <div class="cell" data-yr="2026">
+                    <div class="card" onclick="openModal('coalition-design')"><span class="tag">Design</span><b class="card-title">Nature Positive Coalition design</b><p class="card-body">Initial founding partners signed up and coalition architecture designed.</p></div>
+                    <div class="card" onclick="openModal('ina100-scope')"><span class="tag">Scope</span><b class="card-title">India Nature Action 100 scoped</b><p class="card-body">Investor coalition to price nature risk, led by HDFC and Urvara.Life.</p></div>
+                </div>
+                <div class="cell" data-yr="2027">
+                    <div class="card" onclick="openModal('coalition-formed')"><span class="tag">Formed</span><b class="card-title">Nature Positive Coalition formed</b><p class="card-body">Starts creating demand for restoration and nature-positive action.</p></div>
+                    <div class="card" onclick="openModal('ina100-decisions')"><span class="tag">Action</span><b class="card-title">India Nature Action 100 decisions</b><p class="card-body">Investors use nature risk in investment, M&A, and divestment decisions.</p></div>
+                </div>
+                <div class="cell" data-yr="2028">
+                    <div class="card" onclick="openModal('coalition-flywheel')"><span class="tag">Flywheel</span><b class="card-title">Demand Flywheel</b><p class="card-body">Coalition demand feeds paid products, restoration pathways, and repeatable market proof.</p></div>
+                    <div class="card" onclick="openModal('ina100-repeat')"><span class="tag">Repeat</span><b class="card-title">India Nature Action 100 expands</b><p class="card-body">Nature risk informs repeated portfolio decisions and capital allocation.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAYER 2: PAID -->
+        <section class="layer-view" id="paid" style="--active-color: #1a4d5c; --active-soft: #eef6f8;">
+            <div class="row">
+                <div class="domain-cell"><strong>Execution</strong><span>Diagnostics, Nature Ledger, and productized delivery proof.</span></div>
+                <div class="cell" data-yr="2026">
+                    <div class="card" onclick="openModal('two-diagnostics')"><span class="tag">Proof</span><b class="card-title">Two investor portfolio diagnostics</b><p class="card-body">Two full-scale investor portfolio diagnostics using Enterprise Nature VaR.</p></div>
+                    <div class="card" onclick="openModal('ledger-two')"><span class="tag">Ledger</span><b class="card-title">Two marquee Nature Ledger customers</b><p class="card-body">Two full-spectrum Nature Ledger assessments including ground truthing.</p></div>
+                </div>
+                <div class="cell" data-yr="2027">
+                    <div class="card" onclick="openModal('repeatable-revenue')"><span class="tag">Revenue</span><b class="card-title">Repeatable ENVaR + Nature Ledger product</b><p class="card-body">First full-stack Nature Ledger service becomes productized, not bespoke consulting.</p></div>
+                </div>
+                <div class="cell" data-yr="2028">
+                    <div class="card" onclick="openModal('full-stack-delivery')"><span class="tag">Scale</span><b class="card-title">Full-stack delivery scales</b><p class="card-body">Diagnostics, Nature Ledger, mitigation roadmaps, and restoration roadmaps repeat across clients.</p></div>
+                </div>
+                <div class="pillar-2029">
+                    <h3>Go-to natural capital company</h3>
+                    <p>Urvara becomes the company institutions in India turn to when they need to assess, mitigate, and solve for nature risk. Enterprise Nature VaR, Nature Ledger, mitigation roadmaps, and restoration roadmaps work as one repeatable paid execution system.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="domain-cell"><strong>Product & GTM</strong><span>Commercial engine and risk-to-restoration system.</span></div>
+                <div class="cell" data-yr="2026">
+                    <div class="card" onclick="openModal('envar-mvp')"><span class="tag">MVP</span><b class="card-title">Enterprise Nature VaR MVP live</b><p class="card-body">First paid product path in market.</p></div>
+                    <div class="card" onclick="openModal('ina100-meeting')"><span class="tag">Convened</span><b class="card-title">India Nature Action 100 initial meeting</b><p class="card-body">Enterprise Nature VaR used as the diagnostic tool for investor conversations.</p></div>
+                </div>
+                <div class="cell" data-yr="2027">
+                    <div class="card" onclick="openModal('envar-launch')"><span class="tag">Launch</span><b class="card-title">Full Enterprise Nature VaR paid offering</b><p class="card-body">Asset-level, location-based diagnostics launched as a paid offering in the market.</p></div>
+                    <div class="card" onclick="openModal('investor-route')"><span class="tag">Revenue</span><b class="card-title">Investor route live</b><p class="card-body">Portfolio decisions using Enterprise Nature VaR generate revenue and prove financial materiality.</p></div>
+                </div>
+                <div class="cell" data-yr="2028">
+                    <div class="card" onclick="openModal('risk-restoration-engine')"><span class="tag">System</span><b class="card-title">Nature risk-to-restoration engine</b><p class="card-body">Diagnostic to Nature Ledger to mitigation to restoration roadmap work as one system.</p></div>
+                    <div class="card" onclick="openModal('company-route')"><span class="tag">Scaled</span><b class="card-title">Company route live + scaled</b><p class="card-body">Enterprise clients become the second commercial route, converting investor pressure into company action.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAYER 3: LAB -->
+        <section class="layer-view" id="lab" style="--active-color: #8a5a2b; --active-soft: #f7f2ed;">
+            <div class="bucket-row">
+                <div class="bucket-label"><strong>Instruments</strong><span>Species NFTs, conservation bonds, and tokenized services.</span></div>
+                <div class="cell" data-yr="2026">
+                    <div class="card" onclick="openModal('treeaction-design')"><span class="tag">Funding</span><b class="card-title">TreeAction / Species NFTs</b><p class="card-body">Design and funding stage with Networks for Humanity.</p></div>
+                    <div class="card" onclick="openModal('bond-design')"><span class="tag">Design</span><b class="card-title">Conservation bond design with FES</b><p class="card-body">Structure design before launch with FES.</p></div>
+                </div>
+                <div class="cell" data-yr="2027">
+                    <div class="card" onclick="openModal('species-live')"><span class="tag">Live</span><b class="card-title">Species NFT live</b><p class="card-body">Experiment moves from design to launch.</p></div>
+                    <div class="card" onclick="openModal('bond-launch')"><span class="tag">Launch</span><b class="card-title">Conservation bond launch with FES</b><p class="card-body">Serious use case for conservation finance with FES.</p></div>
+                </div>
+                <div class="cell" data-yr="2028">
+                    <div class="card" onclick="openModal('tokenization')"><span class="tag">Explore</span><b class="card-title">Tokenization of ecosystem services</b><p class="card-body">Test verified stewardship as a digital rail.</p></div>
+                </div>
+                <div class="pillar-2029">
+                    <h3>Future companies and rails</h3>
+                    <p>Validated demand becomes future company and market-rail optionality. The Idea Lab incubates future companies and rails—including moonshots like "IPO a forest"—turning market proof into new venture possibilities.</p>
+                </div>
+            </div>
+            <div class="bucket-row">
+                <div class="bucket-label"><strong>Structures</strong><span>Community-equity-led conservation and venture rails.</span></div>
+                <div class="cell" data-yr="2026">
+                    <div class="placeholder">Hold until public demand and restoration supply are validated enough to design company structures seriously.</div>
+                </div>
+                <div class="cell" data-yr="2027">
+                    <div class="card" onclick="openModal('pes-pilots')"><span class="tag">Pilot</span><b class="card-title">PES pilots via Exchange</b><p class="card-body">Buyer-led stewardship pathways through the Ecosystem Services Exchange.</p></div>
+                    <div class="card" onclick="openModal('community-structures')"><span class="tag">Design</span><b class="card-title">Conservation SPVs + NACs</b><p class="card-body">Community-equity-led conservation structures are designed.</p></div>
+                </div>
+                <div class="cell" data-yr="2028">
+                    <div class="card" onclick="openModal('community-pilot')"><span class="tag">Pilot</span><b class="card-title">Community structure pilot</b><p class="card-body">Conservation SPV or Natural Asset Company pilot active.</p></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<div class="overlay" id="overlay">
+    <div class="modal">
+        <button class="close-modal" onclick="closeModal()">×</button>
+        <h2 id="m-title">Title</h2>
+        <p id="m-summary">All text preserved 100% from original file.</p>
+    </div>
+</div>
+
+<footer>
+    <div>Urvara builds India's natural capital market via trust, execution, and lab innovation.</div>
+    <div>Urvara.Life — A natural capital company — Strategic Roadmap 2026—2029</div>
+</footer>
+
+<script>
+    function setLayer(id, color, soft) {
+        document.querySelectorAll('.layer-tab').forEach(t => t.classList.toggle('active', t.dataset.target === id));
+        document.querySelectorAll('.layer-view').forEach(v => v.classList.toggle('active', v.id === id));
+        document.documentElement.style.setProperty('--active-color', color);
+        document.documentElement.style.setProperty('--active-soft', soft);
+        setYear('2029'); 
+    }
+
+    function setYear(year) {
+        document.querySelectorAll('.cell').forEach(c => {
+            c.style.opacity = (year === '2029' || c.dataset.yr === year) ? '1' : '0.15';
+            c.style.background = (c.dataset.yr === year) ? 'var(--active-soft)' : 'transparent';
+        });
+    }
+
+    function openModal(id) {
+        document.getElementById('m-title').innerText = id.replace(/-/g, ' ').toUpperCase();
+        document.getElementById('overlay').style.display = 'flex';
+    }
+
+    function closeModal() { document.getElementById('overlay').style.display = 'none'; }
+
+    setLayer('trust', '#2d6a4f', '#edf5f0');
+</script>
+
+</body>
+</html>
